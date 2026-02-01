@@ -3,13 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Valentine</title>
+  <title>Will you be my Valentine?</title>
+
   <style>
     :root{
-      /* palette (from your image) */
+      /* color palette */
       --pink-1: #D47897;   /* page background */
       --pink-2: #E09FB2;   /* right button */
-      --pink-3: #F8DEE5;   /* box background */
+      --pink-3: #F8DEE5;   /* box */
       --green-1:#799F77;   /* left button */
 
       --ink:#3a2230;
@@ -17,6 +18,7 @@
     }
 
     *{ box-sizing:border-box; }
+
     body{
       margin:0;
       min-height:100svh;
@@ -29,345 +31,126 @@
     }
 
     .box{
-      width: min(760px, 100%);
+      width: min(720px, 100%);
       background: var(--pink-3);
       border-radius: 22px;
       box-shadow: var(--shadow);
-      padding: 22px 18px 18px;
-    }
-
-    /* ------- Coded cat holding paper ------- */
-    .catStage{
-      width: min(520px, 100%);
-      margin: 0 auto;
-      position: relative;
-      aspect-ratio: 4 / 3;
-      display:grid;
-      place-items:center;
-    }
-
-    .cat{
-      position: relative;
-      width: 78%;
-      height: 78%;
-    }
-
-    /* head */
-    .head{
-      position:absolute;
-      left:50%;
-      top:8%;
-      transform:translateX(-50%);
-      width: 56%;
-      aspect-ratio: 1 / 1;
-      background: #2a2b30;
-      border-radius: 44% 44% 46% 46%;
-      box-shadow: inset 0 -14px 0 rgba(255,255,255,.06);
-    }
-
-    /* ears */
-    .ear{
-      position:absolute;
-      top:-14%;
-      width: 34%;
-      height: 34%;
-      background:#2a2b30;
-      border-radius: 10px 10px 0 0;
-      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-    }
-    .ear.left{ left:2%; transform: rotate(-12deg); }
-    .ear.right{ right:2%; transform: rotate(12deg); }
-    .ear::after{
-      content:"";
-      position:absolute;
-      inset:22% 22% 10% 22%;
-      background:#1c1d22;
-      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-      opacity:.9;
-      border-radius: 10px 10px 0 0;
-    }
-
-    /* eyes */
-    .eye{
-      position:absolute;
-      top:42%;
-      width: 18%;
-      height: 18%;
-      background:#f7f7fb;
-      border-radius:999px;
-    }
-    .eye.left{ left:22%; }
-    .eye.right{ right:22%; }
-
-    .pupil{
-      position:absolute;
-      left:50%;
-      top:52%;
-      transform: translate(-50%,-50%);
-      width: 44%;
-      height: 44%;
-      background: #2bd7a4;
-      border-radius: 999px;
-      box-shadow: inset 0 0 0 5px rgba(0,0,0,.18);
-    }
-    .pupil::after{
-      content:"";
-      position:absolute;
-      left:50%;
-      top:52%;
-      transform: translate(-50%,-50%);
-      width: 55%;
-      height: 55%;
-      background:#0e0f12;
-      border-radius:999px;
-    }
-    .shine{
-      position:absolute;
-      left:18%;
-      top:16%;
-      width: 28%;
-      height: 28%;
-      background: rgba(255,255,255,.85);
-      border-radius:999px;
-    }
-
-    /* nose + mouth */
-    .nose{
-      position:absolute;
-      left:50%;
-      top:63%;
-      transform:translateX(-50%);
-      width: 9%;
-      height: 7%;
-      background:#111;
-      border-radius: 0 0 10px 10px;
-      clip-path: polygon(50% 100%, 0 0, 100% 0);
-      opacity:.9;
-    }
-    .mouth{
-      position:absolute;
-      left:50%;
-      top:68%;
-      width: 26%;
-      height: 18%;
-      transform:translateX(-50%);
-    }
-    .mouth::before,
-    .mouth::after{
-      content:"";
-      position:absolute;
-      top:15%;
-      width:45%;
-      height:65%;
-      border: 2px solid rgba(255,255,255,.55);
-      border-top:none;
-      border-left:none;
-      border-right:none;
-      border-radius: 0 0 50px 50px;
-      opacity:.9;
-    }
-    .mouth::before{ left:4%; }
-    .mouth::after{ right:4%; }
-
-    /* whiskers */
-    .whisk{
-      position:absolute;
-      top:64%;
-      width: 22%;
-      height: 2px;
-      background: rgba(255,255,255,.55);
-      border-radius: 2px;
-    }
-    .whisk.w1{ left:-6%; transform: rotate(-6deg); }
-    .whisk.w2{ left:-6%; top:69%; transform: rotate(6deg); }
-    .whisk.w3{ right:-6%; transform: rotate(6deg); }
-    .whisk.w4{ right:-6%; top:69%; transform: rotate(-6deg); }
-
-    /* paper */
-    .paper{
-      position:absolute;
-      left:50%;
-      bottom:8%;
-      transform:translateX(-50%);
-      width: 86%;
-      height: 48%;
-      background:#ffffff;
-      border-radius: 12px;
-      box-shadow: 0 12px 26px rgba(58,34,48,.18);
-      border: 2px solid rgba(58,34,48,.10);
-      display:grid;
-      place-items:center;
-      padding: 16px 14px;
+      padding: 26px 24px 22px;
       text-align:center;
     }
 
-    .paperText{
-      font-size: clamp(18px, 2.4vw, 28px);
+    h1{
+      margin: 0 0 12px 0;
+      font-size: clamp(28px, 3.6vw, 42px);
       font-weight: 700;
-      letter-spacing: .3px;
-      line-height:1.15;
+      letter-spacing: .4px;
     }
 
-    /* paws holding paper */
-    .paws{
-      position:absolute;
-      left:50%;
-      bottom:36%;
-      transform:translateX(-50%);
-      width: 86%;
-      display:flex;
-      justify-content:space-between;
-      pointer-events:none;
-    }
-    .paw{
-      width: 18%;
-      height: 26px;
-      background:#2a2b30;
-      border-radius: 16px;
-      box-shadow: inset 0 -7px 0 rgba(255,255,255,.06);
-    }
-
-    /* ------- Text under the paper ------- */
     .subtext{
-      margin: 12px 0 0 0;
-      text-align:center;
+      margin: 0;
       font-size: 18px;
       line-height: 1.5;
       opacity: .9;
-      min-height: 1.5em;
-      padding: 0 8px;
+      min-height: 1.5em; /* keeps space */
+      padding: 0 10px;
     }
 
-    /* ------- Buttons ------- */
     .choices{
-      margin-top: 16px;
+      margin-top: 20px;
       display:flex;
       justify-content:center;
-      gap: 14px;
+      gap: 16px;
       flex-wrap:wrap;
     }
+
     button.choice{
       border:none;
       cursor:pointer;
-      padding: 12px 22px;
+      padding: 12px 26px;
       border-radius: 999px;
-      font-size: 17px;
+      font-size: 18px;
       font-family: inherit;
       font-weight: 600;
-      letter-spacing: .25px;
+      letter-spacing: .3px;
       transition: transform .08s ease, filter .2s ease;
     }
+
     button.choice:hover{ filter: brightness(1.03); }
     button.choice:active{ transform: translateY(1px) scale(.99); }
 
-    .leftBtn{ background: var(--green-1); color:#fff; }
-    .rightBtn{ background: var(--pink-2); color:#2e1a25; }
-
-    .footer{
-      margin-top: 14px;
-      font-size: 13px;
-      opacity: .7;
-      text-align:center;
-      letter-spacing: .2px;
+    .leftBtn{
+      background: var(--green-1);
+      color: white;
     }
-    .footer code{
-      background: rgba(255,255,255,.55);
-      padding: 2px 6px;
-      border-radius: 8px;
-      font-family: inherit;
+
+    .rightBtn{
+      background: var(--pink-2);
+      color: #2e1a25;
+    }
+
+    footer{
+      margin-top: 18px;
+      font-size: 13px;
+      opacity: .65;
     }
   </style>
 </head>
 
 <body>
   <main class="box">
-    <div class="catStage" aria-hidden="true">
-      <div class="cat">
-        <div class="head">
-          <div class="ear left"></div>
-          <div class="ear right"></div>
-
-          <div class="eye left">
-            <div class="pupil"><div class="shine"></div></div>
-          </div>
-          <div class="eye right">
-            <div class="pupil"><div class="shine"></div></div>
-          </div>
-
-          <div class="nose"></div>
-          <div class="mouth"></div>
-
-          <div class="whisk w1"></div>
-          <div class="whisk w2"></div>
-          <div class="whisk w3"></div>
-          <div class="whisk w4"></div>
-        </div>
-
-        <div class="paws">
-          <div class="paw"></div>
-          <div class="paw"></div>
-        </div>
-
-        <div class="paper">
-          <div class="paperText" id="paperText">Will you be my Valentine?</div>
-        </div>
-      </div>
-    </div>
-
+    <h1 id="question">Will you be my Valentine?</h1>
     <p class="subtext" id="subtext"></p>
+
     <div class="choices" id="choices"></div>
 
-    <div class="footer">
-      Change texts inside <code>STORY</code>.
-    </div>
+    <footer>♡</footer>
   </main>
 
   <script>
-    // ✅ Edit story here (each step = paper text + under-text + 2 buttons)
+    /* ✨ EDIT TEXTS HERE ✨ */
     const STORY = {
       start: {
-        paper: "Will you be my Valentine?",
         text: "",
         choices: [
-          { label: "No 😅",  next: "no1" },   // LEFT (green)
-          { label: "Yes 💘", next: "yes1" }   // RIGHT (pink)
+          { label: "No 😅",  next: "no1" },
+          { label: "Yes 💘", next: "yes1" }
         ]
       },
+
       yes1: {
-        paper: "Will you be my Valentine?",
-        text: "Yaaay 💗 Put your text here (what you want to say after YES).",
+        text: "Yaaay 💗 Put your message here.",
         choices: [
           { label: "Next ✨", next: "yes2" },
           { label: "Restart 🔁", next: "start" }
         ]
       },
+
       yes2: {
-        paper: "Pick our plan 💌",
-        text: "Put your next text here. Then offer two choices again.",
+        text: "Write another sweet sentence here.",
         choices: [
           { label: "Option 1", next: "endYes" },
           { label: "Option 2", next: "endYes" }
         ]
       },
+
       no1: {
-        paper: "Will you be my Valentine?",
-        text: "Oh no 😭 Put your text here after NO.",
+        text: "Oh no 😭 Write your reaction here.",
         choices: [
           { label: "Still no 🙈", next: "endNo" },
           { label: "Okay yes 😳", next: "yes1" }
         ]
       },
+
       endYes: {
-        paper: "It’s a date!! 💘",
-        text: "Final message here 💗",
+        text: "It’s a date 💘 Put your final message here.",
         choices: [
           { label: "Restart 🔁", next: "start" },
           { label: "Screenshot 📸", next: "start" }
         ]
       },
+
       endNo: {
-        paper: "Rejected… 😿",
-        text: "Final NO message here",
+        text: "Rejected… but still cute 🤍",
         choices: [
           { label: "Restart 🔁", next: "start" },
           { label: "Fine yes 😳", next: "yes1" }
@@ -375,30 +158,22 @@
       }
     };
 
-    const paperTextEl = document.getElementById("paperText");
+    const questionEl = document.getElementById("question");
     const subtextEl = document.getElementById("subtext");
     const choicesEl = document.getElementById("choices");
 
-    function render(nodeId){
-      const node = STORY[nodeId];
-      paperTextEl.textContent = node.paper;
+    function render(step){
+      const node = STORY[step];
       subtextEl.textContent = node.text || "";
-
       choicesEl.innerHTML = "";
-      const [left, right] = node.choices;
 
-      const l = document.createElement("button");
-      l.className = "choice leftBtn";
-      l.textContent = left.label;
-      l.onclick = () => render(left.next);
-
-      const r = document.createElement("button");
-      r.className = "choice rightBtn";
-      r.textContent = right.label;
-      r.onclick = () => render(right.next);
-
-      choicesEl.appendChild(l);
-      choicesEl.appendChild(r);
+      node.choices.forEach((c, i) => {
+        const btn = document.createElement("button");
+        btn.className = "choice " + (i === 0 ? "leftBtn" : "rightBtn");
+        btn.textContent = c.label;
+        btn.onclick = () => render(c.next);
+        choicesEl.appendChild(btn);
+      });
     }
 
     render("start");
