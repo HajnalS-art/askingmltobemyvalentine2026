@@ -9,9 +9,9 @@
     :root{
       /* color palette */
       --pink-1: #D47897;   /* page background */
-      --pink-2: #E09FB2;   /* right button */
+      --pink-2: #E09FB2;   /* left button */
       --pink-3: #F8DEE5;   /* box */
-      --green-1:#799F77;   /* left button */
+      --green-1:#799F77;   /* right button */
 
       --ink:#3a2230;
       --shadow: 0 18px 45px rgba(58, 34, 48, 0.22);
@@ -103,7 +103,7 @@
 
     <div class="choices" id="choices"></div>
 
-    <footer>♡</footer>
+    <footer>♡♡♡♡</footer>
   </main>
 
   <script>
@@ -112,20 +112,36 @@
       start: {
         text: "",
         choices: [
-          { label: "No 😅",  next: "no1" },
-          { label: "Yes 💘", next: "yes1" }
+          { label: "Cringe Simona",  next: "no1" },
+          { label: "Simkaaa 😅", next: "yes1" }
         ]
       },
 
       yes1: {
-        text: "Yaaay 💗 Put your message here.",
+        text: "hihi niekto sa to musí spýtať 😇",
         choices: [
-          { label: "Next ✨", next: "yes2" },
-          { label: "Restart 🔁", next: "start" }
+          { label: "vieš o tom, že aj tak budeme v ten deň spolu? 😅", next: "yes2" },
+          { label: "is it necessary? 🙈", next: "yes3" }
         ]
       },
 
       yes2: {
+        text: "-_- kámo spolupracuj",
+        choices: [
+          { label: "okay :3", next: "yes2.1" },
+          { label: "a musím?", next: "yes2.2" }
+        ]
+      },
+
+       yes2.1: {
+        text: "jupíííí, takže ⬆️⬆️⬆️",
+        choices: [
+          { label: "áno :3", next: "endYes" },
+          { label: "áno 😅", next: "endYes" }
+        ]
+      },
+
+       yes3: {
         text: "Write another sweet sentence here.",
         choices: [
           { label: "Option 1", next: "endYes" },
