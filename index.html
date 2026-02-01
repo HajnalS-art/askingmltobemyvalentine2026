@@ -148,13 +148,45 @@
       },
 
        yes3: {
-        text: "Write another sweet sentence here.",
+        text: "snažím sa byť kjut tak spolupracuj -.-",
         choices: [
-          { label: "Option 1", next: "endYes" },
-          { label: "Option 2", next: "endYes" }
+          { label: "okay 😅", next: "yes3_1" },
+          { label: "fest že nie 😅", next: "yes3_2" }
         ]
       },
 
+      yes3_1: {
+        text: "jupíííí, takže ⬆️⬆️⬆️",
+        choices: [
+          { label: "áno :3", next: "endYes" },
+          { label: "musím porozmýšľať 🤔", next: "yes3_3" }
+        ]
+      },
+
+       yes3_3: {
+        text: "-____-",
+        choices: [
+          { label: "okay 😅", next: "yes2_1" },
+          { label: "🤔🤔🤔", next: "yes3_4" }
+        ]
+      },
+
+   yes3_4: {
+        text: "...",
+        choices: [
+          { label: "okay 😅", next: "yes2_1" },
+          { label: "daj mi ešte chvíľu 🤔🤔🤔", next: "yes3_5" }
+        ]
+      },
+
+  yes3_5: {
+        text: "MIROSLAV ! ",
+        choices: [
+          { label: "okay 😅", next: "yes2_1" },
+          { label: "yes I will be your Valentine :3", next: "endYes" }
+        ]
+      },
+      
       no1: {
         text: "Oh no 😭 Write your reaction here.",
         choices: [
