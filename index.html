@@ -7,10 +7,10 @@
   <style>
     :root{
       /* palette from your image */
-      --pink-1: #D47897;  /* page background */
-      --pink-2: #E09FB2;  /* right button */
-      --pink-3: #F8DEE5;  /* box background */
-      --green-1:#799F77;  /* left button */
+      --pink-1: #D47897;   /* page background */
+      --pink-2: #E09FB2;   /* right button */
+      --pink-3: #F8DEE5;   /* box background */
+      --green-1:#799F77;   /* left button */
 
       --ink: #3a2230;
       --shadow: 0 18px 45px rgba(58, 34, 48, 0.22);
@@ -24,149 +24,176 @@
       display:grid;
       place-items:center;
       background: var(--pink-1);
-      font-family: ui-Garamond, system-ui, -apple-system, Segoe UI, Garamond, Garamond;
+      font-family: "Garamond", "EB Garamond", "Times New Roman", serif;
       color: var(--ink);
       padding: 24px;
     }
 
     .box{
-      width: min(720px, 100%);
+      width: min(760px, 100%);
       background: var(--pink-3);
       border-radius: 22px;
       box-shadow: var(--shadow);
-      padding: 22px 20px 18px;
+      padding: 20px 18px 18px;
     }
 
-    .title{
-      margin: 0 0 8px 0;
-      font-size: clamp(22px, 3.2vw, 36px);
-      font-weight: 900;
-      letter-spacing: .2px;
+    /* --- Cat block --- */
+    .catStage{
+      width: min(420px, 100%);
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .catImg{
+      width: 100%;
+      height: auto;
+      display:block;
+      border-radius: 18px;
+      user-select:none;
+      -webkit-user-drag:none;
+    }
+
+    /* Text that sits on the “paper” area */
+    .paperText{
+      position:absolute;
+
+      /* These numbers position the text onto the white paper.
+         If your cat image is slightly different, you can tweak them. */
+      left: 14%;
+      top: 56%;
+      width: 72%;
+      height: 28%;
+
+      display:grid;
+      place-items:center;
       text-align:center;
+      padding: 10px;
+
+      font-size: clamp(16px, 2.2vw, 24px);
+      font-weight: 700;
+      letter-spacing: .3px;
+      color: var(--ink);
+
+      pointer-events:none; /* click goes through */
     }
 
-    .subtext{
-      margin: 0;
-      text-align:center;
-      font-size: 16px;
-      line-height: 1.35;
-      opacity: .9;
-      min-height: 1.35em; /* keeps space even when empty */
-      padding: 0 6px;
-    }
-
+    /* --- Buttons --- */
     .choices{
       margin-top: 16px;
       display:flex;
       justify-content:center;
-      gap: 12px;
+      gap: 14px;
       flex-wrap:wrap;
     }
 
     button.choice{
       border:none;
       cursor:pointer;
-      padding: 12px 18px;
+      padding: 12px 22px;
       border-radius: 999px;
-      font-size: 16px;
-      font-weight: 800;
-      color: white;
+      font-size: 17px;
+      font-family: inherit;
+      font-weight: 600;
+      letter-spacing: .25px;
       transition: transform .08s ease, filter .2s ease;
     }
-    button.choice:hover{ filter: brightness(1.02); }
+    button.choice:hover{ filter: brightness(1.03); }
     button.choice:active{ transform: translateY(1px) scale(.99); }
 
-    .leftBtn{ background: var(--green-1); }
-    .rightBtn{ background: var(--pink-2); color: #2e1a25; } /* darker text looks nicer on light pink */
+    .leftBtn{
+      background: var(--green-1);
+      color: #fff;
+    }
+    .rightBtn{
+      background: var(--pink-2);
+      color: #2e1a25;
+    }
+
+    /* extra text under the main question (inside the box, not on paper) */
+    .subtext{
+      margin: 10px 0 0 0;
+      text-align:center;
+      font-size: 18px;
+      line-height: 1.5;
+      opacity: .9;
+      min-height: 1.5em;
+      padding: 0 8px;
+    }
 
     .footer{
       margin-top: 14px;
-      font-size: 12.5px;
+      font-size: 13px;
       opacity: .7;
       text-align:center;
+      letter-spacing: .2px;
     }
-    .footer code{ background: rgba(255,255,255,.55); padding: 2px 6px; border-radius: 8px; }
+    .footer code{
+      background: rgba(255,255,255,.55);
+      padding: 2px 6px;
+      border-radius: 8px;
+      font-family: inherit;
+    }
   </style>
 </head>
 
 <body>
   <main class="box">
-    <h1 class="title" id="question">Will you be my Valentine?</h1>
-    <p class="subtext" id="subtext"></p>
+    <div class="catStage">
+      <!-- Put cat.png in the same folder as index.html -->
+      <img class="catImg" src="cat.png" alt="Cute cat holding paper" />
+      <div class="paperText" id="paperText">Will you be my Valentine?</div>
+    </div>
 
+    <p class="subtext" id="subtext"></p>
     <div class="choices" id="choices"></div>
 
     <div class="footer">
-      Edit your messages inside <code>STORY</code> in the code.
+      Change the story inside <code>STORY</code>.
     </div>
   </main>
 
   <script>
-    /*
-      ✅ EDIT THIS PART ONLY
-      Each step has:
-      - question: main text (big)
-      - text: extra text shown UNDER the question
-      - choices: exactly 2 buttons, each goes to "next"
-    */
+    // ✅ Edit texts + button labels here
     const STORY = {
       start: {
-        question: "Will you be my Valentine?",
+        paper: "Will you be my Valentine?",
         text: "",
         choices: [
-          { label: "No 😅",  next: "no1"  }, // LEFT button (green)
-          { label: "Yes 💘", next: "yes1" }  // RIGHT button (pink)
+          { label: "No 😅",  next: "no1" },   // LEFT (green)
+          { label: "Yes 💘", next: "yes1" }   // RIGHT (pink)
         ]
       },
 
       yes1: {
-        question: "Will you be my Valentine?",
-        text: "Yaaay!! 💗 Put your text here (example: 'You just made me the happiest person!')",
+        paper: "Will you be my Valentine?",
+        text: "Yaaay 💗 (Put your text here after YES)",
         choices: [
-          { label: "Pick a date 📅", next: "date1" },
-          { label: "Kiss first 💋",  next: "kiss1" }
+          { label: "Next ✨", next: "yes2" },
+          { label: "Restart 🔁", next: "start" }
+        ]
+      },
+
+      yes2: {
+        paper: "Pick our date 💌",
+        text: "Write your next message here (example: “Saturday 7pm?”).",
+        choices: [
+          { label: "Saturday 🌸", next: "endYes" },
+          { label: "Sunday ☁️", next: "endYes" }
         ]
       },
 
       no1: {
-        question: "Will you be my Valentine?",
-        text: "Oh no 😭 Put your text here (example: 'Are you sure? The cat will cry...')",
+        paper: "Will you be my Valentine?",
+        text: "Oh no 😭 (Put your text here after NO)",
         choices: [
-          { label: "Still no 🙈", next: "no2" },
+          { label: "Still no 🙈", next: "endNo" },
           { label: "Okay yes 😳", next: "yes1" }
         ]
       },
 
-      date1: {
-        question: "Will you be my Valentine?",
-        text: "Perfect. Saturday or Sunday?",
-        choices: [
-          { label: "Saturday 🌸", next: "endYes" },
-          { label: "Sunday ☁️",   next: "endYes" }
-        ]
-      },
-
-      kiss1: {
-        question: "Will you be my Valentine?",
-        text: "Mwah 💋 Now it’s official.",
-        choices: [
-          { label: "Restart 🔁", next: "start" },
-          { label: "One more 😼", next: "endYes" }
-        ]
-      },
-
-      no2: {
-        question: "Will you be my Valentine?",
-        text: "Okay… last chance 😭",
-        choices: [
-          { label: "No 😤", next: "endNo" },
-          { label: "Fine… yes 💗", next: "yes1" }
-        ]
-      },
-
       endYes: {
-        question: "Will you be my Valentine?",
-        text: "IT’S A DATE!! 💘💘💘 (Put your final message here.)",
+        paper: "It’s a date!! 💘",
+        text: "Final message here 💗",
         choices: [
           { label: "Restart 🔁", next: "start" },
           { label: "Screenshot 📸", next: "start" }
@@ -174,50 +201,31 @@
       },
 
       endNo: {
-        question: "Will you be my Valentine?",
-        text: "Rejected… but still cute 😼 (Put your message here.)",
+        paper: "Rejected… 😿",
+        text: "Final NO message here",
         choices: [
           { label: "Restart 🔁", next: "start" },
-          { label: "Okay yes 😳", next: "yes1" }
+          { label: "Fine yes 😳", next: "yes1" }
         ]
       }
     };
 
-    // --- rendering (no need to edit below) ---
-    const questionEl = document.getElementById("question");
+    const paperTextEl = document.getElementById("paperText");
     const subtextEl = document.getElementById("subtext");
     const choicesEl = document.getElementById("choices");
 
     function render(nodeId){
       const node = STORY[nodeId];
-      if(!node){
-        questionEl.textContent = "Missing step: " + nodeId;
-        subtextEl.textContent = "";
-        choicesEl.innerHTML = "";
-        return;
-      }
-
-      questionEl.textContent = node.question;
+      paperTextEl.textContent = node.paper;
       subtextEl.textContent = node.text || "";
 
       choicesEl.innerHTML = "";
       const [left, right] = node.choices;
 
-      const leftBtn = document.createElement("button");
-      leftBtn.className = "choice leftBtn";
-      leftBtn.textContent = left.label;
-      leftBtn.onclick = () => render(left.next);
+      const l = document.createElement("button");
+      l.className = "choice leftBtn";
+      l.textContent = left.label;
+      l.onclick = () => render(left.next);
 
-      const rightBtn = document.createElement("button");
-      rightBtn.className = "choice rightBtn";
-      rightBtn.textContent = right.label;
-      rightBtn.onclick = () => render(right.next);
-
-      choicesEl.appendChild(leftBtn);
-      choicesEl.appendChild(rightBtn);
-    }
-
-    render("start");
-  </script>
-</body>
-</html>
+      const r = document.createElement("button");
+      r.className =
