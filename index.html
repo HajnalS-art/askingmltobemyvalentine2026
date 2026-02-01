@@ -154,6 +154,46 @@
           { label: "áno 😅", next: "endYes" }
         ]
       },
+
+      yes2_2: {
+        text: "a tak bolo by to pekné od teba...",
+        choices: [
+          { label: "okay :3", next: "yes3_1" },
+          { label: "veď ale aj tak budeme spolu v ten deň 😅", next: "yes2_2_1" }
+        ]
+      },
+
+      yes2_2_1: {
+        text: "I know, ale takýmto prístupom to nemusíme ani oslavovať..",
+        choices: [
+          { label: "ale nooo bubii, ja viem, že to chceš oslavovať :3", next: "yes3_1" },
+          { label: "fine by me 😅😅😅", next: "yes2_2_2" }
+        ]
+      },
+
+       yes2_2_2: {
+        text: "Wau, Miro, ja som vedela, že sem ťukneš ...",
+        choices: [
+          { label: "😅😅😅", next: "yes2_2_3" },
+          { label: "a čo teraz ?", next: "yes2_2_3" }
+        ]
+      },
+
+      yes2_2_3: {
+        text: "Skúsime to ešte raz ...",
+        choices: [
+          { label: "okay :3", next: "start" },
+          { label: "a musím ? 🙈", next: "yes2_2_4" }
+        ]
+      },
+
+     yes2_2_4: {
+        text: "ÁNO, ani ma neštvi ..",
+        choices: [
+          { label: "okay dear :3", next: "start" },
+          { label: "Dobre moje najzlašie, najkrajšie a najmilšie stvorenie, ktoré som náhodne stretol na Tindri a teraz je jednou z najkrajších prvkov môjho života :3", next: "yes2_2_3" }
+        ]
+      },
       
        yes3: {
         text: "snažím sa byť kjut tak spolupracuj -.-",
