@@ -1,233 +1,182 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Valentine</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Will you be my Valentine?</title>
 
-<style>
-:root{
-  --pink-1:#D47897;   /* page */
-  --pink-2:#E09FB2;   /* right button */
-  --pink-3:#F8DEE5;   /* box */
-  --green-1:#799F77;  /* left button */
-  --ink:#3a2230;
-}
+  <style>
+    :root{
+      /* color palette */
+      --pink-1: #D47897;   /* page background */
+      --pink-2: #E09FB2;   /* right button */
+      --pink-3: #F8DEE5;   /* box */
+      --green-1:#799F77;   /* left button */
 
-*{box-sizing:border-box}
+      --ink:#3a2230;
+      --shadow: 0 18px 45px rgba(58, 34, 48, 0.22);
+    }
 
-body{
-  margin:0;
-  min-height:100svh;
-  display:grid;
-  place-items:center;
-  background:var(--pink-1);
-  font-family:"Garamond","Times New Roman",serif;
-  color:var(--ink);
-  padding:24px;
-}
+    *{ box-sizing:border-box; }
 
-.box{
-  width:min(720px,100%);
-  background:var(--pink-3);
-  border-radius:22px;
-  padding:26px 22px 22px;
-  text-align:center;
-}
+    body{
+      margin:0;
+      min-height:100svh;
+      display:grid;
+      place-items:center;
+      background: var(--pink-1);
+      font-family: "Garamond", "EB Garamond", "Times New Roman", serif;
+      color: var(--ink);
+      padding: 24px;
+    }
 
-/* ===== CAT ===== */
-.cat-wrap{
-  width:320px;
-  margin:0 auto 14px;
-  position:relative;
-}
+    .box{
+      width: min(720px, 100%);
+      background: var(--pink-3);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      padding: 26px 24px 22px;
+      text-align:center;
+    }
 
-/* head */
-.head{
-  width:160px;
-  height:150px;
-  background:#2b2b2b;
-  border-radius:50%;
-  margin:0 auto;
-  position:relative;
-}
+    h1{
+      margin: 0 0 12px 0;
+      font-size: clamp(28px, 3.6vw, 42px);
+      font-weight: 700;
+      letter-spacing: .4px;
+    }
 
-/* ears */
-.ear{
-  width:40px;
-  height:40px;
-  background:#2b2b2b;
-  position:absolute;
-  top:-18px;
-  clip-path:polygon(50% 0, 0 100%, 100% 100%);
-}
-.ear.left{ left:10px }
-.ear.right{ right:10px }
+    .subtext{
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.5;
+      opacity: .9;
+      min-height: 1.5em; /* keeps space */
+      padding: 0 10px;
+    }
 
-/* eyes */
-.eye{
-  width:26px;
-  height:26px;
-  background:white;
-  border-radius:50%;
-  position:absolute;
-  top:48px;
-}
-.eye.left{ left:38px }
-.eye.right{ right:38px }
+    .choices{
+      margin-top: 20px;
+      display:flex;
+      justify-content:center;
+      gap: 16px;
+      flex-wrap:wrap;
+    }
 
-.pupil{
-  width:14px;
-  height:14px;
-  background:#111;
-  border-radius:50%;
-  margin:6px auto;
-}
+    button.choice{
+      border:none;
+      cursor:pointer;
+      padding: 12px 26px;
+      border-radius: 999px;
+      font-size: 18px;
+      font-family: inherit;
+      font-weight: 600;
+      letter-spacing: .3px;
+      transition: transform .08s ease, filter .2s ease;
+    }
 
-/* nose */
-.nose{
-  width:14px;
-  height:10px;
-  background:#111;
-  clip-path:polygon(50% 100%,0 0,100% 0);
-  position:absolute;
-  top:86px;
-  left:50%;
-  transform:translateX(-50%);
-}
+    button.choice:hover{ filter: brightness(1.03); }
+    button.choice:active{ transform: translateY(1px) scale(.99); }
 
-/* paws */
-.paws{
-  display:flex;
-  justify-content:space-between;
-  width:200px;
-  margin:0 auto;
-  position:relative;
-  top:-10px;
-}
-.paw{
-  width:46px;
-  height:30px;
-  background:#2b2b2b;
-  border-radius:16px;
-}
+    .leftBtn{
+      background: var(--green-1);
+      color: white;
+    }
 
-/* sign */
-.sign{
-  background:white;
-  border-radius:12px;
-  padding:16px 12px;
-  margin-top:-6px;
-  box-shadow:0 10px 24px rgba(0,0,0,.15);
-  font-size:22px;
-  font-weight:600;
-}
+    .rightBtn{
+      background: var(--pink-2);
+      color: #2e1a25;
+    }
 
-/* ===== TEXT + BUTTONS ===== */
-.subtext{
-  font-size:18px;
-  line-height:1.5;
-  min-height:1.5em;
-  margin-top:12px;
-}
-
-.choices{
-  margin-top:18px;
-  display:flex;
-  justify-content:center;
-  gap:16px;
-}
-
-button{
-  border:none;
-  padding:12px 26px;
-  border-radius:999px;
-  font-family:inherit;
-  font-size:18px;
-  cursor:pointer;
-}
-
-.left{ background:var(--green-1); color:white }
-.right{ background:var(--pink-2); color:#2e1a25 }
-</style>
+    footer{
+      margin-top: 18px;
+      font-size: 13px;
+      opacity: .65;
+    }
+  </style>
 </head>
 
 <body>
-<main class="box">
+  <main class="box">
+    <h1 id="question">Will you be my Valentine?</h1>
+    <p class="subtext" id="subtext"></p>
 
-  <div class="cat-wrap">
-    <div class="head">
-      <div class="ear left"></div>
-      <div class="ear right"></div>
-      <div class="eye left"><div class="pupil"></div></div>
-      <div class="eye right"><div class="pupil"></div></div>
-      <div class="nose"></div>
-    </div>
+    <div class="choices" id="choices"></div>
 
-    <div class="paws">
-      <div class="paw"></div>
-      <div class="paw"></div>
-    </div>
+    <footer>♡</footer>
+  </main>
 
-    <div class="sign" id="signText">
-      Will you be my Valentine?
-    </div>
-  </div>
+  <script>
+    /* ✨ EDIT TEXTS HERE ✨ */
+    const STORY = {
+      start: {
+        text: "",
+        choices: [
+          { label: "No 😅",  next: "no1" },
+          { label: "Yes 💘", next: "yes1" }
+        ]
+      },
 
-  <div class="subtext" id="subtext"></div>
+      yes1: {
+        text: "Yaaay 💗 Put your message here.",
+        choices: [
+          { label: "Next ✨", next: "yes2" },
+          { label: "Restart 🔁", next: "start" }
+        ]
+      },
 
-  <div class="choices" id="choices"></div>
+      yes2: {
+        text: "Write another sweet sentence here.",
+        choices: [
+          { label: "Option 1", next: "endYes" },
+          { label: "Option 2", next: "endYes" }
+        ]
+      },
 
-</main>
+      no1: {
+        text: "Oh no 😭 Write your reaction here.",
+        choices: [
+          { label: "Still no 🙈", next: "endNo" },
+          { label: "Okay yes 😳", next: "yes1" }
+        ]
+      },
 
-<script>
-const STORY = {
-  start:{
-    sign:"Will you be my Valentine?",
-    text:"",
-    choices:[
-      {label:"No 😅", next:"no"},
-      {label:"Yes 💘", next:"yes"}
-    ]
-  },
-  yes:{
-    sign:"Will you be my Valentine?",
-    text:"Yaaay 💗 I hoped you’d say yes.",
-    choices:[
-      {label:"Restart 🔁", next:"start"},
-      {label:"Screenshot 📸", next:"start"}
-    ]
-  },
-  no:{
-    sign:"Will you be my Valentine?",
-    text:"Oh no 😭 Are you sure?",
-    choices:[
-      {label:"Still no 🙈", next:"start"},
-      {label:"Okay yes 😳", next:"yes"}
-    ]
-  }
-};
+      endYes: {
+        text: "It’s a date 💘 Put your final message here.",
+        choices: [
+          { label: "Restart 🔁", next: "start" },
+          { label: "Screenshot 📸", next: "start" }
+        ]
+      },
 
-const signText = document.getElementById("signText");
-const subtext = document.getElementById("subtext");
-const choices = document.getElementById("choices");
+      endNo: {
+        text: "Rejected… but still cute 🤍",
+        choices: [
+          { label: "Restart 🔁", next: "start" },
+          { label: "Fine yes 😳", next: "yes1" }
+        ]
+      }
+    };
 
-function render(step){
-  const s = STORY[step];
-  signText.textContent = s.sign;
-  subtext.textContent = s.text;
-  choices.innerHTML = "";
+    const questionEl = document.getElementById("question");
+    const subtextEl = document.getElementById("subtext");
+    const choicesEl = document.getElementById("choices");
 
-  s.choices.forEach((c,i)=>{
-    const b = document.createElement("button");
-    b.className = i===0 ? "left" : "right";
-    b.textContent = c.label;
-    b.onclick = ()=>render(c.next);
-    choices.appendChild(b);
-  });
-}
+    function render(step){
+      const node = STORY[step];
+      subtextEl.textContent = node.text || "";
+      choicesEl.innerHTML = "";
 
-render("start");
-</script>
+      node.choices.forEach((c, i) => {
+        const btn = document.createElement("button");
+        btn.className = "choice " + (i === 0 ? "leftBtn" : "rightBtn");
+        btn.textContent = c.label;
+        btn.onclick = () => render(c.next);
+        choicesEl.appendChild(btn);
+      });
+    }
+
+    render("start");
+  </script>
 </body>
 </html>
