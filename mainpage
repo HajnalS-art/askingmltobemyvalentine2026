@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Be My Valentine?</title>
+  <style>
+    :root{
+      --bg1:#ffb3d5;
+      --bg2:#ffd1e7;
+      --card:#fff7fb;
+      --ink:#3a1c2a;
+      --accent:#ff4fa3;
+      --accent2:#ff7bbd;
+      --shadow: 0 18px 50px rgba(58, 28, 42, 0.18);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100svh;
+      display:grid;
+      place-items:center;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 800px at 20% 10%, rgba(255,255,255,.55), transparent 60%),
+        radial-gradient(900px 700px at 80% 30%, rgba(255,255,255,.35), transparent 55%),
+        linear-gradient(140deg, var(--bg1), var(--bg2));
+      padding:24px;
+    }
+    .wrap{
+      width:min(820px, 100%);
+      display:grid;
+      gap:18px;
+      justify-items:center;
+    }
+    .card{
+      width:100%;
+      background:rgba(255,255,255,.55);
+      backdrop-filter: blur(10px);
+      border:1px solid rgba(255,255,255,.6);
+      border-radius:28px;
+      box-shadow:var(--shadow);
+      padding:22px 20px 18px;
+      display:grid;
+      justify-items:center;
+      gap:14px;
+    }
+    h1{
+      margin:0;
+      font-size:clamp(22px, 3.2vw, 34px);
+      letter-spacing:.2px;
+    }
+    .sub{
+      margin:0;
+      opacity:.85;
+      text-align:center;
+      max-width:55ch;
+      line-height:1.35;
+    }
+
+    /* Cat illustration */
+    .scene{
+      width:min(560px, 100%);
+      display:grid;
+      place-items:center;
+      padding:10px 6px 6px;
+    }
+    .sign{
+      width:min(520px, 100%);
+      background:var(--card);
+      border-radius:18px;
+      padding:14px 16px;
+      border:2px solid rgba(58, 28, 42, 0.12);
+      box-shadow: 0 10px 25px rgba(58, 28, 42, 0.12);
+      text-align:center;
+      font-weight:800;
+      font-size:clamp(18px, 2.6vw, 26px);
+    }
+    .cat{
+      position:relative;
+      width:min(420px, 100%);
+      aspect-ratio: 16 / 10;
+      margin-top:14px;
+      display:grid;
+      place-items:center;
+    }
+    .cat .head{
+      position:absolute;
+      bottom:18%;
+      width:55%;
+      aspect-ratio: 1 / 1;
+      background:#f39a3a;
+      border-radius:48% 48% 46% 46%;
+      box-shadow: inset 0 -10px 0 rgba(0,0,0,0.06);
+      border:2px solid rgba(58, 28, 42, 0.12);
+    }
+    .ear{
+      position:absolute;
+      top:-18%;
+      width:28%;
+      height:28%;
+      background:#f39a3a;
+      border:2px solid rgba(58, 28, 42, 0.12);
+      border-bottom:none;
+      border-radius: 8px 8px 0 0;
+      transform: rotate(10deg);
+      box-shadow: inset 0 -10px 0 rgba(0,0,0,0.05);
+    }
+    .ear.left{ left:8%; transform: rotate(-18deg); }
+    .ear.right{ right:8%; transform: rotate(18deg); }
+
+    .ear::after{
+      content:"";
+      position:absolute;
+      inset:18% 18% 8% 18%;
+      background:#ffb1c8;
+      border-radius: 8px 8px 0 0;
+      opacity:.9;
+    }
+
+    .face{
+      position:absolute;
+      inset:0;
+    }
+    .eye{
+      position:absolute;
+      top:42%;
+      width:12%;
+      height:14%;
+      background:#2a1722;
+      border-radius:999px;
+    }
+    .eye.left{ left:28%; }
+    .eye.right{ right:28%; }
+    .shine{
+      position:absolute;
+      top:20%;
+      left:18%;
+      width:28%;
+      height:28%;
+      background:rgba(255,255,255,.75);
+      border-radius:999px;
+    }
+    .nose{
+      position:absolute;
+      top:56%;
+      left:50%;
+      width:10%;
+      height:8%;
+      transform:translateX(-50%);
+      background:#ff5c9d;
+      border-radius: 0 0 12px 12px;
+      clip-path: polygon(50% 100%, 0 0, 100% 0);
+      opacity:.95;
+    }
+    .mouth{
+      position:absolute;
+      top:62%;
+      left:50%;
+      width:22%;
+      height:16%;
+      transform:translateX(-50%);
+    }
+    .mouth::before,
+    .mouth::after{
+      content:"";
+      position:absolute;
+      top:18%;
+      width:45%;
+      height:55%;
+      border:3px solid rgba(42,23,34,.8);
+      border-top:none;
+      border-left:none;
+      border-right:none;
+      border-radius: 0 0 50px 50px;
+      opacity:.6;
+    }
+    .mouth::before{ left:5%; }
+    .mouth::after{ right:5%; }
+
+    .stripe{
+      position:absolute;
+      width:10%;
+      height:22%;
+      background:rgba(58, 28, 42, 0.10);
+      border-radius:999px;
+      top:24%;
+    }
+    .stripe.s1{ left:40%; transform: rotate(18deg); }
+    .stripe.s2{ right:40%; transform: rotate(-18deg); }
+    .stripe.s3{ left:50%; transform: translateX(-50%); width:8%; height:26%; opacity:.08; }
+
+    .paws{
+      position:absolute;
+      bottom:2%;
+      width:72%;
+      height:26%;
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      padding:0 10%;
+      pointer-events:none;
+    }
+    .paw{
+      width:30%;
+      height:100%;
+      background:#f39a3a;
+      border:2px solid rgba(58, 28, 42, 0.12);
+      border-radius: 24px 24px 30px 30px;
+      box-shadow: inset 0 -10px 0 rgba(0,0,0,0.06);
+    }
+    .paw::after{
+      content:"";
+      display:block;
+      width:70%;
+      height:35%;
+      margin:18% auto 0;
+      background:rgba(255,255,255,.35);
+      border-radius: 999px;
+      opacity:.55;
+    }
+
+    /* Buttons */
+    .choices{
+      width:100%;
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      justify-content:center;
+      margin-top:6px;
+    }
+    button.choice{
+      appearance:none;
+      border:none;
+      cursor:pointer;
+      padding:12px 16px;
+      border-radius:999px;
+      font-weight:800;
+      font-size:16px;
+      color:white;
+      background: linear-gradient(180deg, var(--accent), var(--accent2));
+      box-shadow: 0 10px 20px rgba(255,79,163,.25);
+      transition: transform .08s ease, filter .2s ease;
+    }
+    button.choice:hover{ filter:brightness(1.03); }
+    button.choice:active{ transform: translateY(1px) scale(.99); }
+
+    .meta{
+      font-size:13px;
+      opacity:.75;
+      text-align:center;
+      margin:0;
+    }
+    .restart{
+      margin-top:2px;
+      background: transparent;
+      border:2px dashed rgba(58,28,42,.25);
+      color: var(--ink);
+      box-shadow:none;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+    <section class="card" aria-label="Valentine card">
+      <h1 id="title">🐾 Valentine Decision Tree</h1>
+      <p class="sub" id="subtitle">Click a button to continue the story. You can add more choices easily in the code.</p>
+
+      <div class="scene">
+        <div class="sign" id="promptText">Will you be my valentine?</div>
+
+        <div class="cat" aria-hidden="true">
+          <div class="head">
+            <div class="ear left"></div>
+            <div class="ear right"></div>
+            <div class="face">
+              <div class="stripe s1"></div>
+              <div class="stripe s2"></div>
+              <div class="stripe s3"></div>
+              <div class="eye left"><div class="shine"></div></div>
+              <div class="eye right"><div class="shine"></div></div>
+              <div class="nose"></div>
+              <div class="mouth"></div>
+            </div>
+          </div>
+          <div class="paws">
+            <div class="paw"></div>
+            <div class="paw"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="choices" id="choices"></div>
+
+      <p class="meta">Tip: Edit the <b>STORY</b> object to add new paths.</p>
+    </section>
+  </main>
+
+  <script>
+    // ---- EDIT THIS to add more choices (a simple decision tree) ----
+    // Each node has: prompt, and an array of choices: { text, next }
+    // next can point to another node id, or be null to end.
+    const STORY = {
+      start: {
+        prompt: "Will you be my valentine?",
+        choices: [
+          { text: "Yes 💖", next: "yes1" },
+          { text: "No 🙈", next: "no1" }
+        ]
+      },
+
+      yes1: {
+        prompt: "YAY!! 💞 What should we do for our date?",
+        choices: [
+          { text: "Go for coffee ☕", next: "coffee" },
+          { text: "Movie night 🎬", next: "movie" }
+        ]
+      },
+
+      no1: {
+        prompt: "Oh no 😿 Are you sure?",
+        choices: [
+          { text: "Wait… maybe yes 😳", next: "yes1" },
+          { text: "Still no 😅", next: "no2" }
+        ]
+      },
+
+      no2: {
+        prompt: "Okay… but can I at least give you a cookie? 🍪",
+        choices: [
+          { text: "Fine 😌", next: "cookie" },
+          { text: "Nope 😤", next: "endNo" }
+        ]
+      },
+
+      coffee: {
+        prompt: "Cute! Latte or hot chocolate?",
+        choices: [
+          { text: "Latte ☕", next: "endYes" },
+          { text: "Hot chocolate 🍫", next: "endYes" }
+        ]
+      },
+
+      movie: {
+        prompt: "Pick a vibe!",
+        choices: [
+          { text: "Rom-com 💗", next: "endYes" },
+          { text: "Horror 😈", next: "endYes" }
+        ]
+      },
+
+      cookie: {
+        prompt: "Cookie delivered. Friendship restored 🤝💗",
+        choices: [
+          { text: "Restart 🔁", next: "start" },
+          { text: "One more hug 🫶", next: "endYes" }
+        ]
+      },
+
+      endYes: {
+        prompt: "It’s a date!! 💘💘💘",
+        choices: [
+          { text: "Restart 🔁", next: "start" },
+          { text: "Take a screenshot 📸", next: null }
+        ]
+      },
+
+      endNo: {
+        prompt: "Rejected… but the cat still believes in love 😼💗",
+        choices: [
+          { text: "Restart 🔁", next: "start" },
+          { text: "Okay fine… yes 😳", next: "yes1" }
+        ]
+      }
+    };
+
+    // ---- Rendering logic ----
+    const promptTextEl = document.getElementById("promptText");
+    const choicesEl = document.getElementById("choices");
+
+    function renderNode(nodeId){
+      const node = STORY[nodeId];
+      if (!node) {
+        promptTextEl.textContent = "Oops! Missing node: " + nodeId;
+        choicesEl.innerHTML = "";
+        return;
+      }
+
+      promptTextEl.textContent = node.prompt;
+      choicesEl.innerHTML = "";
+
+      node.choices.forEach((c) => {
+        const btn = document.createElement("button");
+        btn.className = "choice";
+        btn.type = "button";
+        btn.textContent = c.text;
+
+        btn.addEventListener("click", () => {
+          if (c.next === null) {
+            // End: show only restart
+            choicesEl.innerHTML = "";
+            const restart = document.createElement("button");
+            restart.className = "choice restart";
+            restart.type = "button";
+            restart.textContent = "Restart 🔁";
+            restart.addEventListener("click", () => renderNode("start"));
+            choicesEl.appendChild(restart);
+          } else {
+            renderNode(c.next);
+          }
+        });
+
+        choicesEl.appendChild(btn);
+      });
+    }
+
+    renderNode("start");
+  </script>
+</body>
+</html>
