@@ -158,8 +158,8 @@
        yes2_1_1: {
         text: "NIE 😊 takže ⬆️⬆️⬆️",
         choices: [
-          { label: "áno :3", next: "endYes" },
-          { label: "áno 😅", next: "endYes" }
+          { label: "yes :3", next: "endYes" },
+          { label: "yes 😅", next: "endYes" }
         ]
       },
 
@@ -191,7 +191,7 @@
         text: "Skúsime to ešte raz ...",
         choices: [
           { label: "okay :3", next: "start" },
-          { label: "a musím ? 🙈", next: "yes2_2_4" }
+          { label: "je to potrebné ? 🙈", next: "yes2_2_4" }
         ]
       },
 
@@ -203,11 +203,33 @@
         ]
       },
 
-     yes2_2_5: {
+     yes2_3: {
         text: "L-O-L ty si fakt na to ťukol (awwwwwwww)",
         choices: [
           { label: "I already regret my decision 🙈", next: "start" },
-          { label: "... just put me back at the start", next: "start" }
+          { label: "I clicked out of curiosity", next: "yes2_3_1" }
+        ]
+      },
+
+     yes2_3_1: {
+        text: "To fakt ? :(",
+        choices: [
+          { label: "áno 😅😅 ", next: "yes2_3_2" },
+        ]
+      },
+
+       yes2_3_2: {
+        text: "So… does that mean you don’t like me?😭😭😭 ",
+        choices: [
+          { label: "just put me back at the start already...", next: "start" },
+          { label: "oh my brother in jesus 🙄", next: "yes2_3_3" }
+        ]
+      },
+
+       yes2_3_3: {
+        text: "jupííííí you do like me 😁😁😁  ",
+        choices: [
+          { label: "just put me back at the start already...", next: "start" },
         ]
       },
       
@@ -223,31 +245,62 @@
         text: "jupíííí, takže ⬆️⬆️⬆️",
         choices: [
           { label: "áno :3", next: "endYes" },
-          { label: "musím porozmýšľať 🤔", next: "yes3_3" }
+          { label: "musím porozmýšľať 🤔", next: "yes3_1_1" }
         ]
       },
 
-       yes3_3: {
+       yes3_1_1: {
         text: "-____-",
         choices: [
           { label: "okay 😅", next: "yes2_1" },
-          { label: "🤔🤔🤔", next: "yes3_4" }
+          { label: "🤔🤔🤔", next: "yes3_1_2" }
         ]
       },
 
-   yes3_4: {
+   yes3_1_2: {
         text: "...",
         choices: [
           { label: "okay 😅", next: "yes2_1" },
-          { label: "daj mi ešte chvíľku 🤔🤔🤔", next: "yes3_5" }
+          { label: "daj mi ešte chvíľku 🤔🤔🤔", next: "yes3_1_3" }
         ]
       },
 
-  yes3_5: {
+  yes3_1_3: {
         text: "MIROSLAV ! ",
         choices: [
           { label: "okay 😅", next: "yes2_1" },
           { label: "yes I will be your Valentine :3", next: "endYes" }
+        ]
+      },
+
+       yes3_2: {
+        text: "Pekne prosím?",
+        choices: [
+          { label: "okay :3", next: "yes3_1" },
+          { label: "kámo nie 😅", next: "yes3_2_1" }
+        ]
+      },
+
+       yes3_2_1: {
+        text: "Ty ma chceš iba naštvať..",
+        choices: [
+          { label: "áno 😅", next: "yes2_2_3" },
+          { label: "kámo, veď si si to sama napísala, sama si to robíš 😅😅", next: "yes3_2_2" }
+        ]
+      },
+
+       yes3_2_2: {
+        text: "dobre, ale to len preto, že viem ako budeš reagovať ..",
+        choices: [
+          { label: "není pravda", next: "yes3_2_11" },
+          { label: "fair 😅😅😅", next: "yes3_2_3" }
+        ]
+      },
+
+       yes3_2_3: {
+        text: "No vidiš, takže?",
+        choices: [
+          { label: "čo dear 😊? ", next: "no1_1_1" },
         ]
       },
       
