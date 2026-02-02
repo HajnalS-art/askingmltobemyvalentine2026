@@ -19,24 +19,57 @@
 
     *{ box-sizing:border-box; }
 
-/* ===== SMALL, SOFT, RANDOM-LOOKING HEART WALLPAPER ===== */
- body::before{
+ /* ---- HEART WALLPAPER BACKGROUND ---- */
+<body>
+  <div id="heartLayer" aria-hidden="true"></div>
+body::before{
   content:"";
   position:fixed;
   inset:0;
   z-index:-1;
   pointer-events:none;
 
-  background-image:
-    linear-gradient(135deg, transparent 75%, rgba(255,182,193,.35) 75%) ,
-    linear-gradient(225deg, transparent 75%, rgba(255,182,193,.35) 75%) ,
-    radial-gradient(circle at 50% 35%, rgba(255,182,193,.35) 8px, transparent 9px),
-    radial-gradient(circle at 50% 65%, rgba(255,182,193,.35) 8px, transparent 9px);
-
-  background-size: 200px 200px;
-  background-position: 0 0, 0 0, 0 0, 0 0;
+  /* ===== RANDOM WHITE HEARTS ===== */
+#heartLayer{
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
 }
-    
+
+.heart{
+  position: absolute;
+  width: var(--s);
+  height: var(--s);
+  opacity: var(--o);
+  transform: rotate(var(--r));
+}
+
+/* heart top circles */
+.heart::before,
+.heart::after{
+  content:"";
+  position:absolute;
+  width: 50%;
+  height: 50%;
+  background: rgba(255,255,255,0.28);
+  border-radius: 999px;
+}
+.heart::before{ left: 0; top: 0; }
+.heart::after{ right: 0; top: 0; }
+
+/* heart bottom */
+.heart span{
+  position:absolute;
+  left: 0;
+  top: 22%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.28);
+  transform: rotate(45deg);
+  border-radius: 6px;
+}   
     body{
       margin:0;
       min-height:100svh;
