@@ -128,18 +128,136 @@
 
   </style>
 </head>
-
-<canvas id="fxCanvas"></canvas>
   
 <body>
+  <canvas id="fxCanvas"></canvas>
+
   <main class="box">
     <h1 id="question">Will you be my Valentine?</h1>
     <p class="subtext" id="subtext"></p>
-
     <div class="choices" id="choices"></div>
-
     <footer>♡♡SH♡♡</footer>
   </main>
+
+  <script>
+    // --- Heart Fireworks FX (runs on endYes) ---
+    const fxCanvas = document.getElementById("fxCanvas");
+    const fxCtx = fxCanvas.getContext("2d", { alpha: true });
+
+    let W = 0, H = 0;
+    function resizeFX(){
+      const dpr = window.devicePixelRatio || 1;
+      fxCanvas.width  = Math.floor(window.innerWidth  * dpr);
+      fxCanvas.height = Math.floor(window.innerHeight * dpr);
+      fxCanvas.style.width  = "100%";
+      fxCanvas.style.height = "100%";
+      W = fxCanvas.width; H = fxCanvas.height;
+      fxCtx.setTransform(1,0,0,1,0,0);
+    }
+    window.addEventListener("resize", resizeFX);
+    resizeFX();
+
+    function rand(a,b){ return a + Math.random()*(b-a); }
+
+    let particles = [];
+    let fxRunning = false;
+    let fxStopAt = 0;
+    let lastSpawn = 0;
+
+    function heartPath(ctx, x, y, s, rot){
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(rot);
+      ctx.scale(s, s);
+      ctx.beginPath();
+      ctx.moveTo(0, -0.4);
+      ctx.bezierCurveTo(0.5, -0.95, 1.4, -0.25, 0, 1.0);
+      ctx.bezierCurveTo(-1.4, -0.25, -0.5, -0.95, 0, -0.4);
+      ctx.closePath();
+      ctx.restore();
+    }
+
+    function spawnBurst(cx, cy){
+      const dpr = window.devicePixelRatio || 1;
+      const count = Math.floor(rand(22, 36));
+      for(let i=0;i<count;i++){
+        const a = rand(0, Math.PI*2);
+        const sp = rand(1.2, 3.4) * dpr;
+        const p = {
+          x: cx, y: cy,
+          vx: Math.cos(a)*sp,
+          vy: Math.sin(a)*sp - rand(0.2, 1.3)*dpr,
+          g: rand(0.02, 0.06)*dpr,
+          drag: rand(0.985, 0.995),
+          life: rand(55, 95),
+          maxLife: 0,
+          size: rand(6, 12)*dpr,
+          rot: rand(0, Math.PI*2),
+          vr: rand(-0.08, 0.08),
+          color: ["#E09FB2", "#799F77", "#FFFFFF", "#F8DEE5"][Math.floor(rand(0,4))]
+        };
+        p.maxLife = p.life;
+        particles.push(p);
+      }
+    }
+
+    function startHeartFireworks(ms = 3500){
+      fxRunning = true;
+      fxStopAt = performance.now() + ms;
+      fxCanvas.classList.add("show");
+
+      // a few bursts immediately
+      for(let i=0;i<3;i++){
+        spawnBurst(rand(W*0.25, W*0.75), rand(H*0.25, H*0.55));
+      }
+      requestAnimationFrame(tickFX);
+    }
+
+    function stopHeartFireworks(){
+      fxRunning = false;
+      setTimeout(()=> fxCanvas.classList.remove("show"), 400);
+    }
+
+    function tickFX(t){
+      fxCtx.clearRect(0,0,W,H);
+
+      if (fxRunning && t < fxStopAt){
+        if (t - lastSpawn > 450){
+          lastSpawn = t;
+          spawnBurst(rand(W*0.2, W*0.8), rand(H*0.2, H*0.6));
+        }
+      } else {
+        fxRunning = false;
+      }
+
+      for(let i=particles.length-1; i>=0; i--){
+        const p = particles[i];
+        p.vx *= p.drag;
+        p.vy = p.vy * p.drag + p.g;
+        p.x += p.vx;
+        p.y += p.vy;
+        p.rot += p.vr;
+        p.life -= 1;
+
+        const alpha = Math.max(0, Math.min(1, p.life / p.maxLife));
+        fxCtx.globalAlpha = alpha;
+
+        fxCtx.fillStyle = p.color;
+        heartPath(fxCtx, p.x, p.y, p.size, p.rot);
+        fxCtx.fill();
+
+        if (p.life <= 0 || p.x < -100 || p.x > W+100 || p.y < -200 || p.y > H+200){
+          particles.splice(i,1);
+        }
+      }
+      fxCtx.globalAlpha = 1;
+
+      if (fxRunning || particles.length){
+        requestAnimationFrame(tickFX);
+      } else {
+        stopHeartFireworks();
+      }
+    }
 
   <script>
     /* ✨ EDIT TEXTS HERE ✨ */
