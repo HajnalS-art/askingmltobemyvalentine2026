@@ -353,10 +353,18 @@
       no1_1: {
         text: "Och, to som rada 🥰, takže ?",
         choices: [
-          { label: "čo dear 😊? ", next: "no1_1_1" },
+          { label: "čo dear 😊? ", next: "no1_1_11" },
         ]
       },
 
+      no1_1_11: {
+        text: "-_- Miro ⬆️⬆️⬆️",
+        choices: [
+          { label: "áno :3", next: "endNo" },
+          { label: "musím porozmýšľať 🤔", next: "yes3_1_1" }
+        ]
+      },
+      
       no1_1_1: {
         text: "-_- Miro ⬆️⬆️⬆️",
         choices: [
@@ -397,7 +405,7 @@
       },
       
       endYes: {
-        text: "It’s a date 💘 Put your final message here.",
+        text: "Jupí jupíí tak sa teším na náš prvý valentín 🥰",
         choices: [
           { label: "Restart 🔁", next: "start" },
           { label: "Screenshot 📸", next: "start" }
@@ -405,7 +413,7 @@
       },
 
       endNo: {
-        text: "Rejected… but still cute 🤍",
+        text: "Cringe Miro, takto ľahké to nemôže byť. Skús to ešte raz",
         choices: [
           { label: "Restart 🔁", next: "start" },
           { label: "Fine yes 😳", next: "yes1" }
